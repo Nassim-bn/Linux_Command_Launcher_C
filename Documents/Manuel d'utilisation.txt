@@ -1,0 +1,52 @@
+           __  __                        _                     
+          |  \/  | __ _ _ __  _   _  ___| |                    
+          | |\/| |/ _` | '_ \| | | |/ _ \ |                    
+          | |  | | (_| | | | | |_| |  __/ |                    
+          |_|  |_|\__,_|_| |_|\__,_|\___|_|                    
+     _ _       _   _ _ _           _   _             
+  __| ( )_   _| |_(_) (_)___  __ _| |_(_) ___  _ __  
+ / _` |/| | | | __| | | / __|/ _` | __| |/ _ \| '_ \ 
+| (_| | | |_| | |_| | | \__ \ (_| | |_| | (_) | | | |
+ \__,_|  \__,_|\__|_|_|_|___/\__,_|\__|_|\___/|_| |_|
+
+ _____ _____ _____ _____ _____ _____ _____ _____ _____ 
+|_____|_____|_____|_____|_____|_____|_____|_____|_____|
+
+Réalisé par : - ARAHCE Rayane
+	      - BENCHIKH Nassim
+	    
+Pour utiliser le programme, suivez les étapes suivantes :
+
+    1. Ouvrez le terminal dans le dossier principal du projet et 
+    lancez la commande "make".
+    
+    2. - Exécutez le "lanceur de commandes" avec la commande :
+         ./demon XXX (XXX est un entier qui correspond à la taille
+         de la file.
+       - Notez que si vous n'entrez pas un bon paramètre, le 
+         programme va vous l'indiquer avec un message d'erreur.
+       - Si vous n'entrez aucun paramètre, le programme, une fois
+         lancé, va vous demander de choisir la taille préférée.
+       - la taille de la file est limitée à 1000 pour la protection
+         du lanceur de commandes.
+       - Pour quitter le lanceur de commandes, effectuez la commande
+         "Ctrl+C", le programme va vous l'indiquer tout de même.
+       
+    3. - Pour exécuter une ou plusieurs commandes, ouvrez un
+         autre terminal et tapez la commande :
+         ./client "XXX" (XXX est la liste de commandes que vous voulez
+         exécuter, séparées par une barre verticale "|").
+       - Les résultats vont s'afficher dans le terminal en cours.
+       - Notez que plusieurs requêtes peuvent être demandées,
+         dans un seul ou dans plusieurs terminaux, cela ne posera
+         aucun problème car le lanceur de commandes assure la
+         synchronisation des requêtes et des données.
+    
+    N.B: Une requête ne peut pas être effectuée si le lanceur de commandes
+    	 n'est pas en cours d'exécution, un message d'erreur va vous l'indiquer
+    	 tout de même.
+
+
+                                                          
+
+
