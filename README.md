@@ -27,7 +27,6 @@ A synchronized queue is an abstract data type that provides (at least) two opera
 
 - The launcher must handle zombie processes and termination requests via signals.
 - Proper resource cleanup should be implemented when processes terminate.
-- You are free to enhance the application with any improvements you see fit.
 
 ## Demon Program
 
