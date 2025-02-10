@@ -12,7 +12,6 @@ This project involves the implementation of a command launcher. It is divided in
 
 A synchronized queue is an abstract data type that provides (at least) two operations: enqueue and dequeue. In addition to the typical semantics of queues, these operations are blocking when the queue is full (for enqueue) or empty (for dequeue). Moreover, the operations on synchronized queues must be atomic: if multiple tasks are concurrently using the queue, the result should be equivalent to a sequential use of the queue.
 
-
 ### Constraints
 
 - The synchronized queue will use a shared memory segment to allow different processes to insert and retrieve execution requests.
@@ -30,20 +29,46 @@ A synchronized queue is an abstract data type that provides (at least) two opera
 - Proper resource cleanup should be implemented when processes terminate.
 - You are free to enhance the application with any improvements you see fit.
 
+## Demon Program
+
+### 2.1 Starting the Demon
+
+The demon starts by creating a synchronized queue and opening a semaphore for synchronization with clients. It remains active without consuming resources, only being triggered by a client.
+
+### 2.2 Activating the Demon by Clients
+
+Clients activate the daemon by signaling the semaphore. Each client adds its PID to the synchronized queue.
+
+### 2.3 Command Execution
+
+The demon uses dedicated threads to process each command. Commands are extracted from the queue, and a thread is created to execute each one. The thread creates multiple processes (one for each command), and each process handles the execution of a single command. These processes communicate with each other through anonymous pipes.
+
+### 2.4 Signal Handling
+
+The demon uses a signal handler (SIGINT) to ensure a clean termination. Upon receiving the signal, the daemon closes the semaphore, deletes the queue, and releases all resources.
+
+## Client Program
+
+### 3.1 Sending Commands to the Launcher
+
+Clients send commands to the launcher by adding their PID to the synchronized queue, creating named pipes for input/output, and signaling the semaphore.
+
+### 3.2 Command Execution by the Daemon
+
+The demon retrieves the commands from the queue, creates threads to execute them, and redirects the input/output to the named pipes.
+
+### 3.3 Retrieving Results
+
+Clients read the command results from the output/error pipes after signaling the semaphore.
+
 ## Architecture
 
-The client and daemon architecture is as follows:
+The client and demon architecture is as follows:
 
 - The client sends execution requests to the launcher via a synchronized queue.
 - The launcher executes the command in separate threads, managing input/output via pipes.
 
-## Files and Directories
 
-- `command_launcher.c`: The main launcher program.
-- `queue.c`: The implementation of the synchronized queue.
-- `client.c`: The client program that interacts with the launcher.
-- `Makefile`: Build automation for compiling the project.
-- `README.md`: This file.
 
 ## User Manual
 
@@ -70,7 +95,6 @@ To use the program, follow these steps:
    - Note that multiple requests can be made, either in one or in multiple terminals. This will not cause any issues because the command launcher ensures synchronization of requests and data.
 
 **Note:** A request cannot be made if the command launcher is not running. An error message will notify you in that case.
-
 
 ## Copyright
 
